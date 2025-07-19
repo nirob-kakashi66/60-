@@ -18,7 +18,7 @@ module.exports = {
 		const senderID = event.senderID;
 
 		const loadingMessage = await message.reply({
-			body: "Loading random hentai... Please wait! upto 5min 🤡",
+			body: "Loading random hentai... Please wait! upto 5min 🤡 Sound komaiua lo beda 😬",
 		});
 
 		const link = [
