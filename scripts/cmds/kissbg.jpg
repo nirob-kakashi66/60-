@@ -1,1 +1,1 @@
-
+const bgPath = path.join(__dirname, "https://files.catbox.moe/tunhpi.jpg);
