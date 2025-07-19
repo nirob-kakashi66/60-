@@ -1,84 +1,92 @@
 const axios = require("axios");
+const fs = require("fs-extra");
 const path = require("path");
-const fs = require("fs");
+const baseApiUrl = async () => {
+    const base = await axios.get(
+        `https://raw.githubusercontent.com/Blankid018/D1PT0/main/baseApiUrl.json`,
+    );
+    return base.data.api;
+};
 
 module.exports = {
- config: {
- name: "pinterest",
- aliases: ["pin"],
- version: "0.0.1",
- author: "ArYAN",
- role: 0,
- countDown: 20,
- longDescription: {
- en: "This command allows you to search for images on Pinterest based on a given query and fetch a specified number of images (1-100)."
- },
- category: "media",
- guide: {
- en: "{pn} <search query> <number of images>\nExample: {pn} cat - 10"
- }
- },
+    config: {
+        name: "pin",
+        aliases: ["pinterest"],
+        version: "1.0",
+        author: "Dipto",
+        countDown: 15,
+        role: 0,
+        shortDescription: "Pinterest Image Search",
+        longDescription: "Pinterest Image Search",
+        category: "download",
+        guide: {
+            en: "{pn} query",
+        },
+    },
 
- onStart: async function ({ api, event, args }) {
- try {
- const keySearch = args.join(" ");
- if (!keySearch.includes("-")) {
- return api.sendMessage(
- `Please enter the search query and number of images\n\nExample:\n{p}pin cat - 10.`,
- event.threadID,
- event.messageID
- );
- }
+    onStart: async function ({ api, event, args }) {
+        const queryAndLength = args.join(" ").split("-");
+        const q = queryAndLength[0].trim();
+        const length = queryAndLength[1].trim();
 
- const keySearchs = keySearch.substr(0, keySearch.indexOf('-')).trim();
- let numberSearch = parseInt(keySearch.split("-").pop()) || 6;
- if (numberSearch > 20) {
- numberSearch = 20;
- }
+        if (!q || !length) {
+            return api.sendMessage(
+                "❌| Wrong Format",
+                event.threadID,
+                event.messageID,
+            );
+        }
 
- const apiUrl = `https://aryan-noobs-apis.onrender.com/pinterest?search=${encodeURIComponent(keySearchs)}&count=${numberSearch}`;
+        try {
+            const w = await api.sendMessage("Please wait...", event.threadID);
+            const response = await axios.get(
+                `${await baseApiUrl()}/pinterest?search=${encodeURIComponent(q)}&limit=${encodeURIComponent(length)}`,
+            );
+            const data = response.data.data;
 
- const res = await axios.get(apiUrl);
- const data = res.data.data;
- const imgData = [];
+            if (!data || data.length === 0) {
+                return api.sendMessage(
+                    "Empty response or no images found.",
+                    event.threadID,
+                    event.messageID,
+                );
+            }
 
- const cacheDir = path.join(__dirname, "cache");
- if (!fs.existsSync(cacheDir)) {
- fs.mkdirSync(cacheDir);
- }
+            const diptoo = [];
+            const totalImagesCount = Math.min(data.length, parseInt(length));
 
- for (let i = 0; i < Math.min(numberSearch, data.length); i++) {
- try {
- const imgResponse = await axios.get(data[i], {
- responseType: "arraybuffer",
- headers: {
- 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
- }
- });
- const imgPath = path.join(cacheDir, `${i + 1}.jpg`);
- await fs.promises.writeFile(imgPath, imgResponse.data, 'binary');
- imgData.push(fs.createReadStream(imgPath));
- } catch (error) {
- console.error(`Error downloading image ${data[i]}:`, error.message);
- }
- }
+            for (let i = 0; i < totalImagesCount; i++) {
+                const imgUrl = data[i];
+                const imgResponse = await axios.get(imgUrl, {
+                    responseType: "arraybuffer",
+                });
+                const imgPath = path.join(
+                    __dirname,
+                    "dvassests",
+                    `${i + 1}.jpg`,
+                );
+                await fs.outputFile(imgPath, imgResponse.data);
+                diptoo.push(fs.createReadStream(imgPath));
+            }
 
- await api.sendMessage({
- body: ``,
- attachment: imgData,
- }, event.threadID, event.messageID);
-
- if (fs.existsSync(cacheDir)) {
- await fs.promises.rm(cacheDir, { recursive: true });
- }
-
- } catch (error) {
- console.error(error);
- return api.sendMessage(
- `An error occurred: ${error.message}`,
- event.threadID,
- event.messageID
- );
- }
- }
+            await api.unsendMessage(w.messageID);
+            await api.sendMessage(
+                {
+                    body: `
+✅ | Here's Your Query Based images
+🐤 | Total Images Count: ${totalImagesCount}`,
+                    attachment: diptoo,
+                },
+                event.threadID,
+                event.messageID,
+            );
+        } catch (error) {
+            console.error(error);
+            await api.sendMessage(
+                `Error: ${error.message}`,
+                event.threadID,
+                event.messageID,
+            );
+        }
+    },
 };
