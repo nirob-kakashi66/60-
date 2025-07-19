@@ -1,1 +1,2 @@
-const bgPath = path.join(__dirname, "https://files.catbox.moe/tunhpi.jpg);
+const bgPath = __dirname + "/https://files.catbox.moe/tunhpi.jpg";
+const background = await loadImage(bgPath);
