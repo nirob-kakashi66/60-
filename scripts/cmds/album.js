@@ -124,7 +124,7 @@ module.exports = {
       let query = categories[reply - 1];
       let cp = captions[reply - 1];
 
-      if (query === "18+" && event.senderID !== "61572491867501") {
+      if (query === "18+" && event.senderID !== "61572240295227") {
         return api.sendMessage("❌ You don't have permission to access this category.", event.threadID);
       }
 
