@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Pikachu",
+    "type": "Electric",
+    "level": 25
+  },
+  {
+    "name": "Charmander",
+    "type": "Fire",
+    "level": 18
+  }
+]
