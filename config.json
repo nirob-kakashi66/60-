@@ -18,11 +18,11 @@
   },
   "adminBot": [
     "61572240295227",
-    ""
+    "100089049681823"
   ],
   "whiteListMode": {
     "enable": false,
-    "whiteListIds": [61572240295227],
+    "whiteListIds": [61572240295227],[100089049681823],
     "notes": "if you enable this feature, only the ids in the whiteListIds section can use the bot"
   },
   "nickNameBot": "kakashi",
