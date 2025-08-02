@@ -2,10 +2,10 @@ const cooldowns = new Map();
 
 module.exports = {
   config: {
-    name: "slot2",
+    name: "slot",
     version: "3.2",
     author: "Arijit",
-    countDown: 10,
+    countDown: 8,
     shortDescription: {
       en: "slot game 🙂",
     },
