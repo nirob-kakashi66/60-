@@ -5,7 +5,7 @@ module.exports = {
     name: "slot",
     version: "3.2",
     author: "Arijit",
-    countDown: 8,
+    countDown: 12,
     shortDescription: {
       en: "slot game 🙂",
     },
