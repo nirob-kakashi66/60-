@@ -1,21 +1,21 @@
+const balance = require('../scripts/balanceStorage');
+
 module.exports = {
 	config: {
 		name: "balance",
 		aliases: ["bal"],
-		version: "1.2",
-		author: "NTKhang",
+		version: "1.0",
+		author: "Fixed by NIROB",
 		countDown: 5,
 		role: 0,
 		description: {
 			vi: "xem số tiền hiện có của bạn hoặc người được tag",
-			en: "view your money or the money of the tagged person"
+			en: "check your money or tagged person's"
 		},
 		category: "economy",
 		guide: {
-			vi: "   {pn}: xem số tiền của bạn"
-				+ "\n   {pn} <@tag>: xem số tiền của người được tag",
-			en: "   {pn}: view your money"
-				+ "\n   {pn} <@tag>: view the money of the tagged person"
+			vi: "{pn} hoặc {pn} @tag",
+			en: "{pn} or {pn} @tag"
 		}
 	},
 
@@ -30,17 +30,18 @@ module.exports = {
 		}
 	},
 
-	onStart: async function ({ message, usersData, event, getLang }) {
+	onStart: async function ({ message, event, getLang }) {
 		if (Object.keys(event.mentions).length > 0) {
-			const uids = Object.keys(event.mentions);
-			let msg = "";
-			for (const uid of uids) {
-				const userMoney = await usersData.get(uid, "money");
-				msg += getLang("moneyOf", event.mentions[uid].replace("@", ""), userMoney) + '\n';
+			let reply = "";
+			for (const uid in event.mentions) {
+				const name = event.mentions[uid].replace("@", "");
+				const money = balance.get(uid);
+				reply += getLang("moneyOf", name, money) + "\n";
 			}
-			return message.reply(msg);
+			return message.reply(reply);
 		}
-		const userData = await usersData.get(event.senderID);
-		message.reply(getLang("money", userData.money));
+
+		const money = balance.get(event.senderID);
+		return message.reply(getLang("money", money));
 	}
 };
