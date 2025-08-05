@@ -5,7 +5,7 @@ module.exports = {
     name: "anime",
     aliases: ["ani"],
     version: "1.0",
-    author: "‎MR᭄﹅ MAHABUB﹅ メꪜ",
+    author: "‎MAHABUB + modified by NIROB",
     countDown: 10,
     role: 0,
     shortDescription: "anime videos",
@@ -19,11 +19,18 @@ module.exports = {
 
     // লোডিং মেসেজ পাঠানো
     const loadingMessage = await message.reply({
-      body: "Loading random video... Please wait! (up to 5 sec)...\n𝐍𝐨𝐰 𝐥𝐨𝐚𝐝𝐢𝐧𝐠. . .\n█▒▒▒▒▒▒▒▒▒","███▒▒▒▒▒▒▒","█████▒▒▒▒▒","██████▒▒▒▒","████████▒▒","██████████"
+      body: `Loading random video... Please wait! (up to 5 sec)...
+𝐍𝐨𝐰 𝐥𝐨𝐚𝐝𝐢𝐧𝐠. . .
+█▒▒▒▒▒▒▒▒▒
+███▒▒▒▒▒▒▒
+█████▒▒▒▒▒
+██████▒▒▒▒
+████████▒▒
+██████████`,
     });
 
     // JSON ফাইলের URL
-    const jsonUrl = "https://github.com/nirob-kakashi66/anime_json/blob/main/NIROB.json";
+    const jsonUrl = "https://raw.githubusercontent.com/nirob-kakashi66/anime_json/main/NIROB.json";
 
     try {
       // JSON ফাইল থেকে ডাটা নিয়ে আসা
@@ -44,13 +51,13 @@ module.exports = {
 
       // ভিডিও পাঠানো
       message.reply({
-        body: randomMessage, // JSON থেকে নেওয়া মেসেজ
+        body: randomMessage,
         attachment: await global.utils.getStreamFromURL(randomVideo),
       });
 
     } catch (error) {
       console.error("Error fetching video links:", error);
-      return message.reply("Failed to load video . Please try again later.");
+      return message.reply("Failed to load video. Please try again later.");
     }
   }
 };
