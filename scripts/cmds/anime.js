@@ -23,7 +23,7 @@ module.exports = {
     });
 
     // JSON ফাইলের URL
-    const jsonUrl = "https://raw.githubusercontent.com/MR-MAHABUB-004/MAHABUB-BOT-STORAGE/main/anime.json";
+    const jsonUrl = "https://github.com/nirob-kakashi66/anime_json/blob/main/NIROB.json";
 
     try {
       // JSON ফাইল থেকে ডাটা নিয়ে আসা
