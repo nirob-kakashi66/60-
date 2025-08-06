@@ -2,7 +2,7 @@ const { getPrefix } = global.utils;
 const { commands, aliases } = global.GoatBot;
 
 const catboxImages = [
-  "https://files.catbox.moe/yh9j1t.mp4",
+  "https://files.catbox.moe/64l3ow.mp4",
   "https://files.catbox.moe/c6ujy4.jpg",
   "https://files.catbox.moe/ueiep7.jpg",
   "https://files.catbox.moe/5wytj0.jpg",
@@ -92,4 +92,4 @@ module.exports = {
 
 function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
-}
+    }
