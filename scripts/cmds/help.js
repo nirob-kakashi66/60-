@@ -2,7 +2,7 @@ const { getPrefix } = global.utils;
 const { commands, aliases } = global.GoatBot;
 
 const catboxImages = [
-  "https://files.catbox.moe/64l3ow.mp4",
+  "https://files.catbox.moe/hlds7u.mp4",
   "https://files.catbox.moe/c6ujy4.jpg",
   "https://files.catbox.moe/ueiep7.jpg",
   "https://files.catbox.moe/5wytj0.jpg",
@@ -26,11 +26,11 @@ module.exports = {
   config: {
     name: "help",
     version: "2.0",
-    author: "Nirob ꨄ︎",
+    author: "ＮＩＲＯＢ ᶻ 𝗓 𐰁",
     countDown: 5,
     role: 0,
     shortDescription: {
-      en: "N I R O B - BOT help menu, split into 6 pages!",
+      en: "kakashi - BOT help menu, split into 6 pages!",
     },
     longDescription: {
       en: "Shows commands with pastel style and catbox images on 6 pages.",
@@ -92,4 +92,4 @@ module.exports = {
 
 function capitalize(text) {
   return text.charAt(0).toUpperCase() + text.slice(1);
-    }
+                                 }
