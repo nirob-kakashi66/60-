@@ -3,8 +3,7 @@
         "key": "dbln",
         "value": "%7B%2261575851644733%22%3A%22HTStk2vK%22%2C%2261577295850138%22%3A%22QskRdvLY%22%2C%2261578533365421%22%3A%22oFj2jc8F%22%2C%2261572240295227%22%3A%222e7Z1QrF%22%2C%2261578108251452%22%3A%222dVz8Dcc%22%2C%2261576661692968%22%3A%22Y2uxEsmj%22%2C%2261579045858369%22%3A%22SEGN5sfn%22%7D",
         "domain": "facebook.com",
-        "path": "/login/device-based/",
-        "hostOnly": false,
+        "path": "/login/
         "creation": "2025-08-07T04:36:37.218Z",
         "lastAccessed": "2025-08-07T04:36:37.219Z"
     },
@@ -135,3 +134,4 @@
         "lastAccessed": "2025-08-07T04:36:37.219Z"
     }
 ]
+
