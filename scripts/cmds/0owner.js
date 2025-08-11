@@ -16,14 +16,14 @@ module.exports = {
   onStart: async function ({ api, event }) {
     try {
       const ownerInfo = {
-        name: '🥀 𝐍𝐈𝐑𝐎𝐁',
+        name: ' ＮＩＲＯＢ ᶻ 𝗓 𐰁',
         age: ' 19 ',
         nick: 'kakashi',
         gender: '🚹 Male',
         tag: '⌛ Time Traveler'
       };
 
-      const videoURL = 'https://files.catbox.moe/5hs7je.mp4';
+      const videoURL = 'https://files.catbox.moe/026g5j.mp4';
       const tempPath = path.join(__dirname, 'tmp');
       if (!fs.existsSync(tempPath)) fs.mkdirSync(tempPath);
 
