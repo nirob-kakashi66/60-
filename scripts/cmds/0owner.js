@@ -23,7 +23,7 @@ module.exports = {
         tag: '⌛ Time Traveler'
       };
 
-      const videoURL = 'https://files.catbox.moe/lwaiho.mp4';
+      const videoURL = 'https://files.catbox.moe/5hs7je.mp4';
       const tempPath = path.join(__dirname, 'tmp');
       if (!fs.existsSync(tempPath)) fs.mkdirSync(tempPath);
 
