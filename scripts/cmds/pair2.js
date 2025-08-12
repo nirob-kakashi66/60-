@@ -93,7 +93,7 @@ module.exports = {
         // Send message with your kawaii styled message below
         const kawaiiMessage = `
 🌸💞 *Cᴏɴɢʀᴀᴛs* 💞🌸  
-@${name1} ネ ＆ @${name2} ✨
+@${name1}  ＆ @${name2} ✨
 
 💖 *Mᴀᴛᴄʜ Rᴀᴛᴇ:* ${matchRate}% 💖
 
