@@ -1,5 +1,5 @@
 const axios = require("axios");
-const availableCmdsUrl = "https://raw.githubusercontent.com/ARYAN-AROHI-STORE/A4YA9-A40H1/refs/heads/main/CMDSRUL.json";
+const availableCmdsUrl = "https://github.com/kakashiNN/NIROB---KAKASHI-/blob/main/CMDSURL.json";
 const cmdUrlsJson = "https://raw.githubusercontent.com/ARYAN-AROHI-STORE/A4YA9-A40H1/refs/heads/main/CMDS.json";
 const ITEMS_PER_PAGE = 10;
 
