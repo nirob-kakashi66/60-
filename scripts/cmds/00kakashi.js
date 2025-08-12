@@ -24,7 +24,7 @@ body: `
 
 
 \n\n\n  `,
-attachment: await global.utils.getStreamFromURL("https://i.imgur.com/ywtuByb.mp4")
+attachment: await global.utils.getStreamFromURL("https/i.imgur.com/ywtuByb.mp4")
 });
 }
 }
