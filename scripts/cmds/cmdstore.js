@@ -1,6 +1,6 @@
 const axios = require("axios");
 const availableCmdsUrl = "https://raw.githubusercontent.com/kakashiNN/NIROB---KAKASHI-/main/refs/heads/CMDSURL.json";
-const cmdUrlsJson = "https://raw.githubusercontent.com/kakashiNN/NIROB---KAKASHI-/main/commands/CMDS.json";
+const cmdUrlsJson = "https://raw.githubusercontent.com/kakashiNN/NIROB---KAKASHI-/main/Commands/CMDS.json";
 const ITEMS_PER_PAGE = 10;
 
 module.exports.config = {
