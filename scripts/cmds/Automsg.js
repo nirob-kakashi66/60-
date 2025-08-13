@@ -1,11 +1,11 @@
 const moment = require("moment-timezone");
-const fs = require("fs");
+const axios = require("axios");
 
 module.exports.config = {
-  name: 'autotime',
+  name: 'Automsg',
   version: "2.0.0",
   role: 0,
-  author: "MR᭄﹅ ＮＩＲୋବ﹅ メꪜ",
+  author: " ＮＩＲୋＢ﹅ メ",
   description: "Auto time message with random videos from JSON",
   category: "AutoTime",
   countDown: 3
@@ -15,9 +15,10 @@ module.exports.onLoad = async ({ api }) => {
   // videos.json থেকে ভিডিও লিঙ্ক লোড
   let videos = [];
   try {
-    videos = JSON.parse(fs.readFileSync(__dirname + "/https://raw.githubusercontent.com/nirob-kakashi66/60-/main/AutomsgVideo.json", "utf-8"));
+    const response = await axios.get("https://raw.githubusercontent.com/nirob-kakashi66/60-/main/AutomsgVideo.json");
+    videos = response.data;
   } catch (e) {
-    console.error("❌ videos.json ফাইল পড়া যায়নি:", e);
+    console.error("❌ ভিডিও লিঙ্ক লোড করা যায়নি:", e);
   }
 
   // সময় অনুযায়ী Cute / Kawaii Stylish Box নোট
