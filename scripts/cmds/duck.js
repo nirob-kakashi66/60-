@@ -3,22 +3,46 @@ const path = require("path");
 const axios = require("axios");
 const jimp = require("jimp");
 
+const VIP_FILE = path.join(__dirname, "vip.json"); // VIP system file
+
 module.exports = {
   config: {
     name: "duck",
-    version: "1.0.0",
-    author: "Arijit",
+    version: "1.0.1",
+    author: "Arijit + VIP Lock by Kakashi",
     countDown: 5,
     role: 0,
-    shortDescription: "Turn someone into a Duck 🦆",
-    longDescription: "Overlay user's avatar onto the body of a duck",
+    shortDescription: "Turn someone into a Duck 🦆 (VIP Only)",
+    longDescription: "Overlay user's avatar onto the body of a duck (VIP users only)",
     category: "fun",
     guide: {
-      en: "{pn} reply to someone's message to turn them into a Duck",
+      en: "{pn} reply to someone's message to turn them into a Duck (VIP only)",
     },
   },
 
+  langs: {
+    en: {
+      notVip: "❌ | You are not a VIP user. Type !vip to see how to get VIP access."
+    }
+  },
+
   onStart: async function ({ event, message, api }) {
+    // === Check VIP ===
+    let vipDB = [];
+    if (fs.existsSync(VIP_FILE)) {
+      try {
+        vipDB = JSON.parse(fs.readFileSync(VIP_FILE));
+      } catch {
+        vipDB = [];
+      }
+    }
+
+    const senderID = event.senderID;
+    const isVip = vipDB.some(user => user.uid === senderID && (user.expire === 0 || user.expire > Date.now()));
+
+    if (!isVip) return message.reply(this.langs.en.notVip);
+    // =================
+
     let targetID =
       event.type === "message_reply"
         ? event.messageReply.senderID
@@ -52,10 +76,8 @@ module.exports = {
       const bg = await jimp.read(bgPath);
       const avatar = await jimp.read(avatarPath);
 
-      // Resize avatar and make it circular
       avatar.resize(100, 100).circle();
 
-      // Adjusted position for duck face (change these if needed)
       const x = 184;
       const y = 32;
 
@@ -83,4 +105,3 @@ module.exports = {
     }
   },
 };
-  
