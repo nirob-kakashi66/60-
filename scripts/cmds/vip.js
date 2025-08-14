@@ -3,14 +3,14 @@ const path = require("path");
 
 const VIP_FILE = path.join(__dirname, "vip.json");
 
-// আপনার ফেসবুক আইডি এখানে সেট করা আছে।
+// Owner Facebook UID
 const OWNER_UID = "61572240295227"; 
 
 module.exports = {
   config: {
     name: "vip",
-    version: "2.3",
-    author: "Arijit (Edited for Ownership)",
+    version: "2.4",
+    author: "Arijit (Edited for Ownership + Updated by Kakashi)",
     countDown: 0,
     role: 0,
     shortDescription: "Manage VIP users",
@@ -91,7 +91,11 @@ module.exports = {
     else if (cmd === "cmds") {
       const isVip = vipDB.some(user => user.uid === senderID && (user.expire === 0 || user.expire > Date.now()));
       if (isVip) {
-        const vipCmds = ["art", "edit", "gay", "gay2", "jan edit permission", "mistake", "pair3", "pair4", "pair10", "wlt"];
+        const vipCmds = [
+          "art", "edit", "gay", "gay2", "jan edit permission", "mistake",
+          "pair3", "pair4", "pair10", "wlt",
+          "buttslap", "duck", "cockroach" // ✅ Added here
+        ];
         const msg = `🎀 | VIP Command List:\n${vipCmds.sort().map((c, i) => `${i + 1}. ${c}`).join("\n")}\n\n> More VIP commands coming soon!`;
         message.reply(msg);
       } 
